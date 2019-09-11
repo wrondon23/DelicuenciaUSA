@@ -1,0 +1,39 @@
+---
+title: "Detenciones por posesión de marihuana"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+Arresto <- read.csv('C:/Users/w.rondon/Documents/R/CURSO R/USA/DelicuenciaUSA/Data/Arrests.csv')
+```
+
+## Introduccion
+
+Datos sobre el tratamiento policial de personas arrestadas en Toronto por posesión simple de pequeñas cantidades de marihuana. Los datos son parte de un conjunto de datos más amplio presentado en una serie de artículos en el periódico Toronto Star.
+
+
+## Tabla Resumen de variables
+```{r echo=FALSE}
+Arresto.df <-  head(Arresto)
+    
+kable(Arresto.df)%>%
+    kable_styling()
+
+
+```
+
+#### Analisis de la edad y el color de piel
+```{r}
+ColorEdad <- table("Peso" = Arresto$colour,"Edad"=Arresto$age)
+
+
+kable( ColorEdad)%>%
+  kable_styling()
+
+barplot(table(ColorEdad), main = 'Grafico', beside = TRUE, legend.text = TRUE )
+```
+
